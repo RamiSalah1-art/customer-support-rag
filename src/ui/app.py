@@ -256,7 +256,7 @@ with col3:
 with st.sidebar:
     logo_path = Path("logo.png")
     if logo_path.exists():
-        st.image(str(logo_path), use_container_width=True)
+        st.image(str(logo_path), use_column_width=True)
     else:
         st.image("https://via.placeholder.com/300x150/1E88E5/ffffff?text=AI+Support+Assistant", use_container_width=True)
     
