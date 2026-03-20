@@ -15,7 +15,7 @@ class UserManager:
         # قاعدة بيانات المستخدمين
         self.users = {
             "admin": {
-                "password_hash": self._hash_password("admin123"),
+                "password_hash": self._hash_password("Admin@2026$Strong"),
                 "plan": "admin",
                 "expiry": None,  # لا ينتهي
                 "quota": None,   # غير محدود
@@ -93,6 +93,11 @@ class UserManager:
     
     def verify_user(self, username: str, password: str) -> bool:
         """التحقق من صحة المستخدم وكلمة السر"""
+        # admin مقبول مباشرة بدون أي تحقق إضافي
+        if username == "admin" and password == "Admin@2026$Strong":
+            return True
+        
+        # باقي المستخدمين يتحققوا بشكل طبيعي
         if username not in self.users:
             return False
         
