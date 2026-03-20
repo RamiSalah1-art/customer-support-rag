@@ -1,0 +1,70 @@
+# البيئة الافتراضية
+venv/
+env/
+ENV/
+venv.bak/
+
+# ملفات Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# ملفات البيئة والمفاتيح
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# مجلدات البيانات (قد تكون كبيرة)
+data/vector_store/
+data/processed/
+*.db
+*.sqlite
+*.sqlite3
+
+# ملفات السجلات
+logs/
+*.log
+*.log.*
+
+# ملفات التقييم والنتائج
+evaluation_results/
+*.csv
+*.xlsx
+
+# مجلدات IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# مجلدات النظام
+.DS_Store
+Thumbs.db
+
+# مجلدات التوزيع
+dist/
+build/
+*.egg-info/
+
+# ملفات المشروع المؤقتة
+notebooks/.ipynb_checkpoints/
+*.ipynb_checkpoints
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# بيانات المستخدمين
+data/users.json
+data/usage.json
+data/last_reset.txt
+
+# Firebase
+*.json
+!customer-support-rag-4924b-firebase-adminsdk-fbsvc-3cff9a0bf0.json
+
+# الملفات الثنائية
+*.whl

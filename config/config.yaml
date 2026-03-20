@@ -1,0 +1,111 @@
+# إعدادات المشروع
+
+project:
+  name: "Customer Support RAG"
+  version: "1.0.0"
+  description: "RAG system for customer support automation"
+
+# إعدادات النماذج
+models:
+  embedding:
+    primary: "text-embedding-3-small"
+    backup: "sentence-transformers/all-MiniLM-L6-v2"
+    dimensions: 1536
+
+  llm:
+    primary: "gpt-4-turbo-preview"
+    backup: "claude-3-opus-20240229"
+    temperature: 0.2
+    max_tokens: 1000
+
+  reranker:
+    model: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    enabled: true
+    top_k_rerank: 20
+    final_k: 5
+
+# إعدادات قاعدة المتجهات
+vector_store:
+  type: "chromadb"
+  path: "./data/vector_store"
+  collection_name: "customer_support_docs"
+
+  search_params:
+    metric: "cosine"
+    n_results: 20
+    include_metadata: true
+
+# إعدادات معالجة المستندات
+ingestion:
+  chunk_size: 512
+  chunk_overlap: 50
+  chunking_strategy: "semantic"
+
+  supported_formats:
+    - pdf
+    - docx
+    - txt
+    - md
+
+# إعدادات الاسترجاع
+retrieval:
+  hybrid_search:
+    enabled: true
+    dense_weight: 0.7
+    sparse_weight: 0.3
+    fusion_method: "rrf"
+
+  query_expansion:
+    enabled: true
+    num_variations: 3
+    use_llm: true
+
+# إعدادات التوليد
+generation:
+  prompt_template: "config/prompts.yaml"
+
+  citation:
+    enabled: true
+    format: "inline"
+
+  fallback:
+    enabled: true
+    message: "I couldn't find specific information about this in our knowledge base. Please contact our support team for assistance."
+
+# إعدادات التقييم
+evaluation:
+  metrics:
+    - "hit_rate"
+    - "mrr"
+    - "precision@3"
+    - "precision@5"
+    - "latency"
+
+  test_set_size: 100
+  save_results: true
+  results_path: "./evaluation_results"
+
+# إعدادات API
+api:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+  rate_limit: 100
+
+# إعدادات الواجهة
+ui:
+  type: "streamlit"
+  port: 8501
+  theme: "dark"
+  examples:
+    - "What is your return policy?"
+    - "How do I reset my password?"
+    - "Do you ship internationally?"
+
+# إعدادات التسجيل
+logging:
+  level: "INFO"
+  format: "json"
+  file: "./logs/system.log"
+  rotation: "1 day"
+  retention: "30 days"
