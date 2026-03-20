@@ -35,6 +35,9 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# منع التخزين المؤقت في المتصفح
+st.cache_data.clear()
+
 # نظام تسجيل الدخول
 def login_page():
     """صفحة تسجيل الدخول"""
